@@ -123,7 +123,6 @@ h2 {
 
 h3 { 
   font-size: var(--heading-font-size-l); 
-  color: var(--text-title-color); 
 }
 
 h4 { font-size: var(--heading-font-size-m); }

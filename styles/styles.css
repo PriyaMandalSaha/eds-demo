@@ -121,7 +121,11 @@ h2 {
   font-size: var(--heading-font-size-xl);
 }
 
-h3 { font-size: var(--heading-font-size-l); color: var(--text-title-color); }
+h3 { 
+  font-size: var(--heading-font-size-l); 
+  color: var(--text-title-color); 
+}
+
 h4 { font-size: var(--heading-font-size-m); }
 h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }

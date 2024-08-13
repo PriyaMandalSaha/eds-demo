@@ -1,5 +1,5 @@
 .banner {
-    background-color: #00308f;
+    background-color: var(--banner-bg-color);
     width: 100%;
     position: relative;
     padding: 10px;

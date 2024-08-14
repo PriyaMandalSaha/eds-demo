@@ -241,6 +241,11 @@ main img {
   width: 100%;
 }
 
+.icon-box-arrow-right {
+  margin: 0 5px 0;
+  vertical-align: middle;
+}
+
 /* sections */
 main > .section {
   margin: 40px 0;

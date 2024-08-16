@@ -24,6 +24,10 @@
   --section-color: #c2c1c1;
   --click-more-color: #101a30;
   --banner-bg-color: #00308f;
+  --bg-color-grey: #e8e8e8;
+  --color-font-grey: #2c2c2c;
+  --color-black: #000;
+  --color-white: #fff;
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
@@ -44,6 +48,22 @@
 
   /* nav height */
   --nav-height: 64px;
+
+   /* Spacing (Consonant) */
+   --spacing-xxxs: 4px;
+   --spacing-xxs: 8px;
+   --spacing-xs: 16px;
+   --spacing-s: 24px;
+   --spacing-m: 32px;
+   --spacing-ml: 40px;
+   --spacing-l: 48px;
+   --spacing-xl: 56px;
+   --spacing-xxl: 80px;
+   --spacing-xxxl: 104px;
+ 
+   /* Border-radius */
+   --input-border-radius: 4px;
+   --card-border-radius-l: 12px;
 }
 
 /* fallback fonts */

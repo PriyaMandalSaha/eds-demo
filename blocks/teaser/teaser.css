@@ -2,6 +2,7 @@
     background-color: #dedcff;
     padding: 10px;
 }
+
 .section.teaser-container  h2 {
     color: var(--teaser-heading);
 }

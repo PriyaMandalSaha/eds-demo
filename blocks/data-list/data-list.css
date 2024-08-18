@@ -22,6 +22,9 @@
 
 .pagination-controls {
     margin-top: 10px;
+    display: block;
+    overflow: hidden;
+    float: right;
 }
 
 .pagination-controls button:first-of-type {

@@ -1,16 +1,17 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
+
 const placeholders = await fetchPlaceholders('');
 
-const { allCountries, abbreviation, africa, america, asia, australia, capital, continent, countries, europe, sNo } = placeholders;
+const { abbreviation, capital, continent, countries, sNo } = placeholders;
 
 async function createHeaderDiv(container) {
-    const headerDiv = document.createElement("div");
-    headerDiv.classList.add("header-div");
+    const headerDiv = document.createElement('div');
+    headerDiv.classList.add('header-div');
 
     const headers = [sNo, countries, continent, capital, abbreviation];
     headers.forEach(headerText => {
-        const headerItem = document.createElement("div");
-        headerItem.classList.add("header-item");
+        const headerItem = document.createElement('div');
+        headerItem.classList.add('header-item');
         headerItem.textContent = headerText;
         headerDiv.append(headerItem);
     });
@@ -19,13 +20,13 @@ async function createHeaderDiv(container) {
 }
 
 async function createRowDiv(container, row, i) {
-    const rowDiv = document.createElement("div");
-    rowDiv.classList.add("row-div");
+    const rowDiv = document.createElement('div');
+    rowDiv.classList.add('row-div');
 
     const data = [i, row.Country, row.Continent, row.Capital, row.Abbreviation];
     data.forEach(dataItemText => {
-        const rowItem = document.createElement("div");
-        rowItem.classList.add("row-item");
+        const rowItem = document.createElement('div');
+        rowItem.classList.add('row-item');
         rowItem.textContent = dataItemText;
         rowDiv.append(rowItem);
     });
@@ -37,10 +38,10 @@ async function createDivStructure(jsonURL, offset = 0, limit = 20) {
     const url = new URL(jsonURL);
     url.searchParams.set('offset', offset);
     url.searchParams.set('limit', limit);
-    console.log(`Fetching data from URL: ${url}`);
+
     const resp = await fetch(url);
     const json = await resp.json();
-    console.log("=====JSON=====> {} ", json);
+    console.log('=====JSON=====> {} ', json, `::||Fetching data from URL: ${url}`);
 
     const container = document.createElement('div');
     container.classList.add('data-container');
@@ -70,7 +71,6 @@ function createPaginationControls(container, jsonURL, currentOffset, limit) {
 
     const nextButton = document.createElement('button');
     nextButton.textContent = 'Next';
-    // nextButton.disabled = json.data.length < limit;
     nextButton.addEventListener('click', async () => {
         container.innerHTML = '';
         const newOffset = currentOffset + limit;
@@ -87,7 +87,7 @@ export default async function decorate(block) {
     const countries = block.querySelector('a[href$=".json"]');
     const parentDiv = document.createElement('div');
     parentDiv.classList.add('countries-block');
-   
+
     if (countries) {
         const contentContainer = document.createElement('div');
         contentContainer.classList.add('content-container');

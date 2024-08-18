@@ -1,0 +1,35 @@
+.data-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-div, .row-div {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.header-item, .row-item {
+    flex: 1;
+    text-align: center;
+}
+
+.header-div {
+    font-weight: bold;
+    background-color: #f4f4f4;
+}
+
+.pagination-controls {
+    margin-top: 10px;
+}
+
+.pagination-controls button:first-of-type {
+    margin-right: 10px;
+}
+
+.content-container {
+    display: block;
+    overflow: hidden;
+    position: relative;
+}

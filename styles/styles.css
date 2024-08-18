@@ -235,6 +235,8 @@ button:focus {
 button:disabled,
 button:disabled:hover {
   background-color: var(--light-color);
+  color: var(--text-color);
+  border: 2px solid currentcolor;
   cursor: unset;
 }
 

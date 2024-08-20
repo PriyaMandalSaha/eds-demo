@@ -33,5 +33,5 @@
 .cards .click-more {
   padding-left: 15px;
   padding-bottom: 10px;
-  color: var(--click-more-color);
+  color: var(--button-color);
 }

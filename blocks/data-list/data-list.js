@@ -4,14 +4,16 @@ import { fetchPlaceholders } from '../../scripts/aem.js';
 const placeholders = await fetchPlaceholders('');
 
 const {
-    dataListSNo, dataListCountries, dataListContinent, dataListCapital, dataListAbbreviation,
+  dataListSNo, dataListCountries, dataListContinent, dataListCapital, dataListAbbreviation,
 } = placeholders;
 
 async function createHeaderDiv(container) {
   const headerDiv = document.createElement('div');
   headerDiv.classList.add('header-div');
 
-  const headers = [dataListSNo, dataListCountries, dataListContinent, dataListCapital, dataListAbbreviation];
+  const headers = [
+    dataListSNo, dataListCountries, dataListContinent, dataListCapital, dataListAbbreviation
+  ];
   headers.forEach((headerText) => {
     const headerItem = document.createElement('div');
     headerItem.classList.add('header-item');
@@ -98,7 +100,6 @@ export default async function decorate(block) {
     const initialContent = await createDivStructure(countriesLink.href, 0, 20);
     contentContainer.append(initialContent);
     createPaginationControls(contentContainer, countriesLink.href, 0, 20);
-
 
     countriesLink.replaceWith(parentDiv);
   }

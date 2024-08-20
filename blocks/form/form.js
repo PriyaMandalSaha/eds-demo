@@ -2,21 +2,21 @@ import { addInViewAnimationToSingleElement } from '../../utils/helper.js';
 
 function createSelect(fromdata) {
   const select = document.createElement('select');
-  select.id = fd.Field;
-  if (fd.Placeholder) {
+  select.id = fromdata.Field;
+  if (fromdata.Placeholder) {
     const ph = document.createElement('option');
-    ph.textContent = fd.Placeholder;
+    ph.textContent = fromdata.Placeholder;
     ph.setAttribute('selected', '');
     ph.setAttribute('disabled', '');
     select.append(ph);
   }
-  fd.Options.split(',').forEach((o) => {
+  fromdata.Options.split(',').forEach((o) => {
     const option = document.createElement('option');
     option.textContent = o.trim();
     option.value = o.trim();
     select.append(option);
   });
-  if (fd.Mandatory === 'x') {
+  if (fromdata.Mandatory === 'x') {
     select.setAttribute('required', 'required');
   }
   return select;
@@ -49,19 +49,19 @@ async function submitForm(form) {
   return payload;
 }
 
-function createButton(fd) {
+function createButton(fromdata) {
   const button = document.createElement('button');
-  button.textContent = fd.Label;
+  button.textContent = fromdata.Label;
   button.classList.add('button');
-  if (fd.Type === 'submit') {
+  if (fromdata.Type === 'submit') {
     button.addEventListener('click', async (event) => {
       const form = button.closest('form');
-      if (fd.Placeholder) form.dataset.action = fd.Placeholder;
+      if (fromdata.Placeholder) form.dataset.action = fromdata.Placeholder;
       if (form.checkValidity()) {
         event.preventDefault();
         button.setAttribute('disabled', '');
         await submitForm(form);
-        const redirectTo = fd.Extra;
+        const redirectTo = fromdata.Extra;
         window.location.href = redirectTo;
       }
     });
@@ -69,38 +69,38 @@ function createButton(fd) {
   return button;
 }
 
-function createHeading(fd, el) {
+function createHeading(fromdata, el) {
   const heading = document.createElement(el);
-  heading.textContent = fd.Label;
+  heading.textContent = fromdata.Label;
   return heading;
 }
 
-function createInput(fd) {
+function createInput(fromdata) {
   const input = document.createElement('input');
-  input.type = fd.Type;
-  input.id = fd.Field;
-  input.setAttribute('placeholder', fd.Placeholder);
-  if (fd.Mandatory === 'x') {
+  input.type = fromdata.Type;
+  input.id = fromdata.Field;
+  input.setAttribute('placeholder', fromdata.Placeholder);
+  if (fromdata.Mandatory === 'x') {
     input.setAttribute('required', 'required');
   }
   return input;
 }
 
-function createTextArea(fd) {
+function createTextArea(fromdata) {
   const input = document.createElement('textarea');
-  input.id = fd.Field;
-  input.setAttribute('placeholder', fd.Placeholder);
-  if (fd.Mandatory === 'x') {
+  input.id = fromdata.Field;
+  input.setAttribute('placeholder', fromdata.Placeholder);
+  if (fromdata.Mandatory === 'x') {
     input.setAttribute('required', 'required');
   }
   return input;
 }
 
-function createLabel(fd) {
+function createLabel(fromdata) {
   const label = document.createElement('label');
-  label.setAttribute('for', fd.Field);
-  label.textContent = fd.Label;
-  if (fd.Mandatory === 'x') {
+  label.setAttribute('for', fromdata.Field);
+  label.textContent = fromdata.Label;
+  if (fromdata.Mandatory === 'x') {
     label.classList.add('required');
   }
   return label;
@@ -139,46 +139,46 @@ export async function createForm(formURL) {
   const rules = [];
   // eslint-disable-next-line prefer-destructuring
   form.dataset.action = pathname.split('.json')[0];
-  json.data.forEach((fd) => {
-    fd.Type = fd.Type || 'text';
+  json.data.forEach((fromdata) => {
+    fromdata.Type = fromdata.Type || 'text';
     const fieldWrapper = document.createElement('div');
-    const style = fd.Style ? ` form-${fd.Style}` : '';
-    const fieldId = `form-${fd.Type}-wrapper${style}`;
+    const style = fromdata.Style ? ` form-${fromdata.Style}` : '';
+    const fieldId = `form-${fromdata.Type}-wrapper${style}`;
     fieldWrapper.className = fieldId;
     fieldWrapper.classList.add('field-wrapper');
-    switch (fd.Type) {
+    switch (fromdata.Type) {
       case 'select':
-        fieldWrapper.append(createLabel(fd));
-        fieldWrapper.append(createSelect(fd));
+        fieldWrapper.append(createLabel(fromdata));
+        fieldWrapper.append(createSelect(fromdata));
         break;
       case 'heading':
-        fieldWrapper.append(createHeading(fd, 'h3'));
+        fieldWrapper.append(createHeading(fromdata, 'h3'));
         break;
       case 'legal':
-        fieldWrapper.append(createHeading(fd, 'p'));
+        fieldWrapper.append(createHeading(fromdata, 'p'));
         break;
       case 'checkbox':
-        fieldWrapper.append(createInput(fd));
-        fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createInput(fromdata));
+        fieldWrapper.append(createLabel(fromdata));
         break;
       case 'text-area':
-        fieldWrapper.append(createLabel(fd));
-        fieldWrapper.append(createTextArea(fd));
+        fieldWrapper.append(createLabel(fromdata));
+        fieldWrapper.append(createTextArea(fromdata));
         break;
       case 'submit':
-        fieldWrapper.append(createButton(fd));
+        fieldWrapper.append(createButton(fromdata));
         break;
       default:
-        fieldWrapper.append(createLabel(fd));
-        fieldWrapper.append(createInput(fd));
+        fieldWrapper.append(createLabel(fromdata));
+        fieldWrapper.append(createInput(fromdata));
     }
 
-    if (fd.Rules) {
+    if (fromdata.Rules) {
       try {
-        rules.push({ fieldId, rule: JSON.parse(fd.Rules) });
+        rules.push({ fieldId, rule: JSON.parse(fromdata.Rules) });
       } catch (e) {
         // eslint-disable-next-line no-console
-        console.warn(`Invalid Rule ${fd.Rules}: ${e}`);
+        console.warn(`Invalid Rule ${fromdata.Rules}: ${e}`);
       }
     }
     form.append(fieldWrapper);

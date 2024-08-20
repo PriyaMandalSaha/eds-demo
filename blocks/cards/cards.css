@@ -34,4 +34,9 @@
   padding-left: 15px;
   padding-bottom: 10px;
   color: var(--button-color);
+  text-decoration: underline;
+}
+
+.cards .click-more:hover {
+  color: var(--banner-bg-color);
 }

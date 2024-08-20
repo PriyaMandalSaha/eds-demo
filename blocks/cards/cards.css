@@ -30,7 +30,7 @@
   color: var(--text-color);
 }
 
-.click-more {
+.cards .click-more {
   padding-left: 15px;
   padding-bottom: 10px;
   color: var(--click-more-color);

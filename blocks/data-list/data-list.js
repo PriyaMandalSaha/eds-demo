@@ -4,14 +4,14 @@ import { fetchPlaceholders } from '../../scripts/aem.js';
 const placeholders = await fetchPlaceholders('');
 
 const {
-  sNo, countries, continent, capital, abbreviation,
+    dataListSNo, dataListCountries, dataListContinent, dataListCapital, dataListAbbreviation,
 } = placeholders;
 
 async function createHeaderDiv(container) {
   const headerDiv = document.createElement('div');
   headerDiv.classList.add('header-div');
 
-  const headers = [sNo, countries, continent, capital, abbreviation];
+  const headers = [dataListSNo, dataListCountries, dataListContinent, dataListCapital, dataListAbbreviation];
   headers.forEach((headerText) => {
     const headerItem = document.createElement('div');
     headerItem.classList.add('header-item');
@@ -42,11 +42,8 @@ async function createDivStructure(jsonURL, offset = 0, limit = 20) {
   url.searchParams.set('offset', offset);
   url.searchParams.set('limit', limit);
 
-  console.log(`Fetching data from URL: ${url}`);
-
   const resp = await fetch(url);
   const json = await resp.json(); // Fetch and assign the JSON data
-  console.log('Fetched JSON Data: ', json);
 
   const container = document.createElement('div');
   container.classList.add('data-container');
@@ -56,7 +53,6 @@ async function createDivStructure(jsonURL, offset = 0, limit = 20) {
     createRowDiv(container, row, offset + i + 1);
   });
 
-  console.log('Generated container: ', container);
   return container;
 }
 
@@ -85,8 +81,6 @@ async function createPaginationControls(container, jsonURL, currentOffset, limit
     createPaginationControls(container, jsonURL, newOffset, limit);
   });
 
-  console.log(`Pagination controls created at offset: ${currentOffset}`);
-
   paginationDiv.append(prevButton, nextButton);
   container.append(paginationDiv);
 }
@@ -105,7 +99,6 @@ export default async function decorate(block) {
     contentContainer.append(initialContent);
     createPaginationControls(contentContainer, countriesLink.href, 0, 20);
 
-    console.log('ParentDiv Content: ', parentDiv);
 
     countriesLink.replaceWith(parentDiv);
   }

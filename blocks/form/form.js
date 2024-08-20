@@ -1,6 +1,6 @@
 import { addInViewAnimationToSingleElement } from '../../utils/helper.js';
 
-function createSelect(fd) {
+function createSelect(fromdata) {
   const select = document.createElement('select');
   select.id = fd.Field;
   if (fd.Placeholder) {

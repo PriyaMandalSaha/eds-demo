@@ -3,13 +3,13 @@
 
 <head>
   <title>Page not found</title>
-  <meta name="description" content="The page you're looking for cannot be found.">  
+  <meta name="description" content="The page you're looking for cannot be found.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:title" content="Page not found">
   <script type="text/javascript">
     window.isErrorPage = true;
     window.errorCode = '404';
-  </script>  
+  </script>
   <link rel="stylesheet" href="/styles/styles.css">
   <style>
     main.error {
@@ -56,18 +56,18 @@
           backBtn.href = pathname;
           backBtn.textContent = 'Go back';
           backBtn.title = 'Go back';
-          const btnContainer = document.querySelector('.button-container');          
+          const btnContainer = document.querySelector('.button-container');
           const errorImage = document.createElement('img');
           errorImage.src = '/icons/404-error.png';
           errorImage.alt = 'Error 404 Image';
           errorImage.classList.add('error-image');
-          const pageErrorTxt = document.createElement('div');          
+          const pageErrorTxt = document.createElement('div');
           pageErrorTxt.textContent = `There is no ${pathname} route path`;
           const imgContainer = document.createElement('div');
-          imgContainer.classList.add('image-block');
+          imgContainer.classList.add('error-image-section');
           imgContainer.append(errorImage);
           btnContainer.before(imgContainer);
-          btnContainer.prepend(pageErrorTxt);         
+          btnContainer.prepend(pageErrorTxt);
           btnContainer.append(backBtn);
         }
       }

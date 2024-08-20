@@ -3,32 +3,12 @@
 
 <head>
   <title>Page not found</title>
+  <meta name="description" content="The page you're looking for cannot be found.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Page not found">
   <script type="text/javascript">
     window.isErrorPage = true;
     window.errorCode = '404';
-  </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Page not found">
-  <script src="/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
-  <script type="module">
-    window.addEventListener('load', () => {
-      if (document.referrer) {
-        const { origin, pathname } = new URL(document.referrer);
-        if (origin === window.location.origin) {
-          const backBtn = document.createElement('a');
-          backBtn.classList.add('button', 'error-button-back');
-          backBtn.href = pathname;
-          backBtn.textContent = 'Go back';
-          backBtn.title = 'Go back';
-          const btnContainer = document.querySelector('.button-container');
-          btnContainer.append(backBtn);
-        }
-      }
-    });
-  </script>
-  <script type="module">
-    import { sampleRUM } from '/scripts/aem.js';
-    sampleRUM('404', { source: document.referrer });
   </script>
   <link rel="stylesheet" href="/styles/styles.css">
   <style>
@@ -36,6 +16,7 @@
       min-height: calc(100vh - var(--nav-height));
       display: flex;
       align-items: center;
+      text-align: center;
     }
 
     main.error .error-number {
@@ -53,16 +34,50 @@
   <header></header>
   <main class="error">
     <div class="section">
-      <svg viewBox="1 0 38 18" class="error-number">
+      <!-- <svg viewBox="1 0 38 18" class="error-number">
         <text x="0" y="17">404</text>
-      </svg>
+      </svg> -->
       <h2 class="error-message">Page Not Found</h2>
       <p class="button-container">
         <a href="/" class="button secondary error-button-home">Go home</a>
+        <!-- New Button to the Homepage -->
+        <a href="/home" class="button secondary error-button-home">Return to Homepage</a>
       </p>
     </div>
   </main>
   <footer></footer>
+  <script type="module">
+    window.addEventListener('load', () => {
+      if (document.referrer) {
+        const { origin, pathname } = new URL(document.referrer);
+        if (origin === window.location.origin) {
+          const backBtn = document.createElement('a');
+          backBtn.classList.add('button', 'error-button-back');
+          backBtn.href = pathname;
+          backBtn.textContent = 'Go back';
+          backBtn.title = 'Go back';
+          const btnContainer = document.querySelector('.button-container');
+          const errorImage = document.createElement('img');
+          errorImage.src = '/icons/404-error.png';
+          errorImage.alt = 'Error 404 Image';
+          errorImage.classList.add('error-image');
+          const pageErrorTxt = document.createElement('div');
+          pageErrorTxt.textContent = `There is no ${pathname} route path`;
+          const imgContainer = document.createElement('div');
+          imgContainer.classList.add('error-image-section');
+          imgContainer.append(errorImage);
+          btnContainer.before(imgContainer);
+          btnContainer.prepend(pageErrorTxt);
+          btnContainer.append(backBtn);
+        }
+      }
+    });
+  </script>
+  <script type="module">
+    import { sampleRUM } from '/scripts/aem.js';
+    sampleRUM('404', { source: document.referrer });
+  </script>
+  <script src="/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
 </body>
 
 </html>

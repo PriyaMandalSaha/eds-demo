@@ -1,0 +1,44 @@
+.data-list .data-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-white);
+    border-radius: var(--card-border-radius-l);
+}
+
+.data-list .header-div, .data-list .row-div {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.data-list .header-item, .data-list .row-item {
+    flex: 1;
+    text-align: center;
+}
+
+.data-list .header-div {
+    font-weight: bold;
+    background-color: var(--data-header-bg-color);
+}
+
+.data-list .pagination-controls {
+    margin-top: 10px;
+    display: block;
+    overflow: hidden;
+    float: right;
+}
+
+.data-list .pagination-controls button:first-of-type {
+    margin-right: 10px;
+}
+
+.data-list .content-container {
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+
+.data-list .row-div:last-of-type {
+    border: none;
+}

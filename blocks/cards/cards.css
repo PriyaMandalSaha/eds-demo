@@ -25,3 +25,18 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+
+.cards .cards-card-body p strong {
+  color: var(--text-color);
+}
+
+.cards .click-more {
+  padding-left: 15px;
+  padding-bottom: 10px;
+  color: var(--button-color);
+  text-decoration: underline;
+}
+
+.cards .click-more:hover {
+  color: var(--banner-bg-color);
+}

@@ -12,7 +12,7 @@ async function createHeaderDiv(container) {
   headerDiv.classList.add('header-div');
 
   const headers = [
-    dataListSNo, dataListCountries, dataListContinent, dataListCapital, dataListAbbreviation
+    dataListSNo, dataListCountries, dataListContinent, dataListCapital, dataListAbbreviation,
   ];
   headers.forEach((headerText) => {
     const headerItem = document.createElement('div');
